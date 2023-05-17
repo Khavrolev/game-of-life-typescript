@@ -6,7 +6,7 @@ import SizeEditor from "./components/size-editor/SizeEditor";
 function App() {
   return (
     <div className={styles.wrapper}>
-      <h1>Game of Life</h1>
+      <h1>Game of Life (Khavrolev)</h1>
       <Control />
       <SizeEditor />
       <Board />
