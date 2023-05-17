@@ -4,4 +4,8 @@
   width: $cellSize;
   height: $cellSize;
   border: 1px solid black;
+
+  &_selected {
+    background-color: steelblue;
+  }
 }
