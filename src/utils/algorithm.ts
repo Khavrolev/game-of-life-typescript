@@ -75,7 +75,7 @@ export function getNextStepState(
 
   const newState = cellsForChecking.reduce((acc, key) => {
     const aliveNeighbors = countAliveNeighbors(state, boardSize, key);
-    console.log(aliveNeighbors);
+
     const neighborsToBeAlive = state[key]
       ? neighborsForAliveToBeAlive
       : neighborsForDeadToBeAlive;
