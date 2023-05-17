@@ -15,10 +15,10 @@ declare module "csstype" {
 function Board() {
   const dispatch = useAppDispatch();
   const state = useAppSelector((state) => state);
-  const { rows, cols, alive, boardState } = state;
+  const { rows, cols, isAlive, boardState } = state;
 
   function handleClickOnBoard(event: MouseEvent<HTMLDivElement>) {
-    if (alive || !(event.target instanceof HTMLElement)) {
+    if (isAlive || !(event.target instanceof HTMLElement)) {
       return;
     }
 
@@ -30,7 +30,7 @@ function Board() {
     }
 
     const key = getKeyFromRowAndCol(row, col);
-    dispatch(changeBoardState({ [key]: !boardState[key] }));
+    dispatch(changeBoardState({ ...boardState, [key]: !boardState[key] }));
   }
 
   function renderBoard() {
