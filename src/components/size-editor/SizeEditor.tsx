@@ -8,6 +8,7 @@ import DimensionEditor from "./dimension-editor/DimensionEditor";
 import { BoardSize } from "../../types/types";
 
 function SizeEditor() {
+  const isAlive = useAppSelector((state) => state.isAlive);
   const rows = useAppSelector((state) => state.rows);
   const cols = useAppSelector((state) => state.cols);
   const dispatch = useAppDispatch();
@@ -31,7 +32,7 @@ function SizeEditor() {
       />
       <Button
         name="Save"
-        disabled={hasError}
+        disabled={isAlive || hasError}
         onClick={() =>
           dispatch(
             changeBoardSize({ rows: boardSize.rows, cols: boardSize.cols })
