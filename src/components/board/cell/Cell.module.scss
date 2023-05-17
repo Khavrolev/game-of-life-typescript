@@ -1,0 +1,7 @@
+@import "../../../styles/styles.scss";
+
+.cell {
+  width: $cellSize;
+  height: $cellSize;
+  border: 1px solid black;
+}

@@ -1,0 +1,7 @@
+@import "../../styles/styles.scss";
+
+.board {
+  --cols: 50;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), $cellSize);
+}
