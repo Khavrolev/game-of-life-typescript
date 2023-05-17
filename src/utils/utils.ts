@@ -1,4 +1,9 @@
-import { FIRST_CELL_NUMBER, KEY_SEPARATOR } from "../constants/constants";
+import {
+  FIRST_CELL_NUMBER,
+  KEY_SEPARATOR,
+  MAX_ROWS_COLS_QUANTITY,
+  MIN_ROWS_COLS_QUANTITY,
+} from "../constants/constants";
 import { BoardSize } from "../types/types";
 
 export function getKeyFromRowAndCol(row: number, col: number) {
@@ -29,6 +34,10 @@ export function filterRowAndCol(rowString?: string, colString?: string) {
 
 export function isNumberOfBoard(row: number, col: number) {
   return row < FIRST_CELL_NUMBER || col < FIRST_CELL_NUMBER;
+}
+
+export function isBoardSideOutOfLimits(value: number) {
+  return value < MIN_ROWS_COLS_QUANTITY || value > MAX_ROWS_COLS_QUANTITY;
 }
 
 export function initBoard(size: BoardSize) {

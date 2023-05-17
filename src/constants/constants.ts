@@ -1,3 +1,5 @@
+export const DELAY_BETWEEN_STEPS = 500;
+
 export const MIN_ROWS_COLS_QUANTITY = 10;
 export const MAX_ROWS_COLS_QUANTITY = 100;
 

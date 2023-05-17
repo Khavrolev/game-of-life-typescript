@@ -4,8 +4,13 @@ import styles from "./Board.module.scss";
 import Cell from "./cell/Cell";
 import { filterRowAndCol, getKeyFromRowAndCol } from "../../utils/utils";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { changeBoardState } from "../../store/boardSlice";
-import { FIRST_CELL_NUMBER } from "../../constants/constants";
+import { changeAliveStatus, changeBoardState } from "../../store/boardSlice";
+import {
+  DELAY_BETWEEN_STEPS,
+  FIRST_CELL_NUMBER,
+} from "../../constants/constants";
+import { useInterval } from "react-use";
+import { getNextStepState } from "../../utils/algorithm";
 
 declare module "csstype" {
   interface Properties {
@@ -18,6 +23,18 @@ function Board() {
   const storeState = useAppSelector((state) => state);
   const { isAlive, state, size } = storeState;
   const { rows, cols } = size;
+
+  useInterval(
+    () => {
+      if (!Object.keys(state).length) {
+        dispatch(changeAliveStatus());
+        return alert("Game over!");
+      }
+
+      dispatch(changeBoardState(getNextStepState(state, size)));
+    },
+    isAlive ? DELAY_BETWEEN_STEPS : null
+  );
 
   function handleClickOnBoard(event: MouseEvent<HTMLDivElement>) {
     if (isAlive || !(event.target instanceof HTMLElement)) {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { changeBoardSize, changeBoardState } from "../../store/boardSlice";
@@ -6,15 +6,23 @@ import Button from "../button/Button";
 import styles from "./SizeEditor.module.scss";
 import DimensionEditor from "./dimension-editor/DimensionEditor";
 import { BoardSize } from "../../types/types";
+import { isBoardSideOutOfLimits } from "../../utils/utils";
 
 function SizeEditor() {
+  const dispatch = useAppDispatch();
   const isAlive = useAppSelector((state) => state.isAlive);
   const size = useAppSelector((state) => state.size);
   const { rows, cols } = size;
-  const dispatch = useAppDispatch();
 
   const [newBoardSize, setNewBoardSize] = useState<BoardSize>({ rows, cols });
   const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setHasError(
+      isBoardSideOutOfLimits(newBoardSize.rows) ||
+        isBoardSideOutOfLimits(newBoardSize.cols)
+    );
+  }, [newBoardSize]);
 
   function handleSaveClick() {
     dispatch(
@@ -33,13 +41,11 @@ function SizeEditor() {
         label={`Rows (${rows})`}
         value={newBoardSize.rows}
         onChange={(value) => setNewBoardSize({ ...newBoardSize, rows: value })}
-        onError={setHasError}
       />
       <DimensionEditor
         label={`Cols (${cols})`}
         value={newBoardSize.cols}
         onChange={(value) => setNewBoardSize({ ...newBoardSize, cols: value })}
-        onError={setHasError}
       />
       <Button
         name="Save"
