@@ -2,10 +2,9 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { BoardSize, BoardState } from "../types/types";
 
 const initialState: BoardState = {
-  rows: 50,
-  cols: 50,
   isAlive: false,
-  boardState: {},
+  state: {},
+  size: { rows: 50, cols: 50 },
 };
 
 const boardSlice = createSlice({
@@ -13,14 +12,13 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     changeBoardSize(state, action: PayloadAction<BoardSize>) {
-      state.rows = action.payload.rows;
-      state.cols = action.payload.cols;
+      state.size = action.payload;
     },
     changeAliveStatus(state) {
       state.isAlive = !state.isAlive;
     },
     changeBoardState(state, action: PayloadAction<Record<string, boolean>>) {
-      state.boardState = action.payload;
+      state.state = action.payload;
     },
   },
 });
