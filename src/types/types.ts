@@ -8,4 +8,7 @@ export interface BoardSize {
   cols: number;
 }
 
-export type BoardState = BoardSize;
+export interface BoardState extends BoardSize {
+  alive: boolean;
+  boardState: Record<string, boolean>;
+}

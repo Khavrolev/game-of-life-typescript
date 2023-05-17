@@ -1,10 +1,15 @@
 import styles from "./Cell.module.scss";
 import classNames from "classnames";
 
-function Cell() {
+interface Props {
+  selected: boolean;
+}
+
+function Cell({ selected, ...rest }: Props) {
   return (
     <div
-      className={classNames(styles.cell, { [styles["cell_selected"]]: true })}
+      className={classNames(styles.cell, { [styles.cell_selected]: selected })}
+      {...rest}
     />
   );
 }

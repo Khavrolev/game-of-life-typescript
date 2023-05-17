@@ -13,7 +13,7 @@ function SizeEditor() {
   const dispatch = useAppDispatch();
 
   const [boardSize, setBoardSize] = useState<BoardSize>({ rows, cols });
-  const [isError, setIsError] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   return (
     <div className={styles["size-editor"]}>
@@ -21,17 +21,17 @@ function SizeEditor() {
         label={`Rows (${rows})`}
         value={boardSize.rows}
         onChange={(value) => setBoardSize({ ...boardSize, rows: value })}
-        onError={setIsError}
+        onError={setHasError}
       />
       <DimensionEditor
         label={`Cols (${cols})`}
         value={boardSize.cols}
         onChange={(value) => setBoardSize({ ...boardSize, cols: value })}
-        onError={setIsError}
+        onError={setHasError}
       />
       <Button
         name="Save"
-        disabled={isError}
+        disabled={hasError}
         onClick={() =>
           dispatch(
             changeBoardSize({ rows: boardSize.rows, cols: boardSize.cols })
