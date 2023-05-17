@@ -9,3 +9,5 @@ yarn
 
 yarn dev
 ```
+
+You can use [GitHub Pages](https://Khavrolev.github.io/game-of-life-typescript).
