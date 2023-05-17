@@ -5,35 +5,37 @@ import { changeBoardSize } from "../../store/boardSlice";
 import Button from "../button/Button";
 import styles from "./SizeEditor.module.scss";
 import DimensionEditor from "./dimension-editor/DimensionEditor";
+import { BoardSize } from "../../types/types";
 
 function SizeEditor() {
-  const storeRows = useAppSelector((state) => state.rows);
-  const storeCols = useAppSelector((state) => state.cols);
+  const rows = useAppSelector((state) => state.rows);
+  const cols = useAppSelector((state) => state.cols);
   const dispatch = useAppDispatch();
 
-  const [rowsToSave, setRowsToSave] = useState(storeRows);
-  const [colsToSave, setColsToSave] = useState(storeCols);
+  const [boardSize, setBoardSize] = useState<BoardSize>({ rows, cols });
   const [isError, setIsError] = useState(false);
 
   return (
     <div className={styles["size-editor"]}>
       <DimensionEditor
-        label={`Rows (${storeRows})`}
-        value={rowsToSave}
-        onChange={setRowsToSave}
+        label={`Rows (${rows})`}
+        value={boardSize.rows}
+        onChange={(value) => setBoardSize({ ...boardSize, rows: value })}
         onError={setIsError}
       />
       <DimensionEditor
-        label={`Cols (${storeCols})`}
-        value={colsToSave}
-        onChange={setColsToSave}
+        label={`Cols (${cols})`}
+        value={boardSize.cols}
+        onChange={(value) => setBoardSize({ ...boardSize, cols: value })}
         onError={setIsError}
       />
       <Button
         name="Save"
         disabled={isError}
         onClick={() =>
-          dispatch(changeBoardSize({ rows: rowsToSave, cols: colsToSave }))
+          dispatch(
+            changeBoardSize({ rows: boardSize.rows, cols: boardSize.cols })
+          )
         }
       />
     </div>
