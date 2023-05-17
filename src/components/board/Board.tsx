@@ -17,27 +17,6 @@ function Board() {
   const state = useAppSelector((state) => state);
   const { rows, cols, alive, boardState } = state;
 
-  function renderBoard() {
-    const board = [];
-
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < cols; j++) {
-        const key = getKeyFromRowAndCol(i, j);
-
-        board.push(
-          <Cell
-            key={key}
-            selected={boardState[key]}
-            data-row={i}
-            data-col={j}
-          />
-        );
-      }
-    }
-
-    return board;
-  }
-
   function handleClickOnBoard(event: MouseEvent<HTMLDivElement>) {
     if (alive || !(event.target instanceof HTMLElement)) {
       return;
@@ -46,7 +25,7 @@ function Board() {
     const row = Number(event.target.dataset.row);
     const col = Number(event.target.dataset.col);
 
-    if (isNaN(row) || isNaN(col)) {
+    if (isNaN(row) || isNaN(col) || row < 0 || col < 0) {
       return;
     }
 
@@ -54,10 +33,44 @@ function Board() {
     dispatch(changeBoardState({ [key]: !boardState[key] }));
   }
 
+  function renderBoard() {
+    const board = [];
+
+    for (let i = -1; i < rows; i++) {
+      for (let j = -1; j < cols; j++) {
+        const key = getKeyFromRowAndCol(i, j);
+
+        board.push(
+          <Cell
+            key={key}
+            selected={boardState[key]}
+            content={getCellContent(i, j)}
+            row={i}
+            col={j}
+          />
+        );
+      }
+    }
+
+    function getCellContent(row: number, col: number) {
+      if (col === -1 && row !== -1) {
+        return `${row + 1}`;
+      }
+
+      if (row === -1 && col !== -1) {
+        return `${col + 1}`;
+      }
+
+      return "";
+    }
+
+    return board;
+  }
+
   return (
     <div
       className={styles.board}
-      style={{ "--cols": cols }}
+      style={{ "--cols": cols + 1 }}
       onClick={handleClickOnBoard}
     >
       {renderBoard()}

@@ -1,2 +1,2 @@
 export const MIN_ROWS_COLS_QUANTITY = 10;
-export const MAX_ROWS_COLS_QUANTITY = 1000;
+export const MAX_ROWS_COLS_QUANTITY = 100;

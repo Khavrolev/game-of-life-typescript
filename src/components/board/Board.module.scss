@@ -5,4 +5,5 @@
   display: grid;
   grid-template-columns: repeat(var(--cols), $cellSize);
   cursor: pointer;
+  border: 4px solid grey;
 }

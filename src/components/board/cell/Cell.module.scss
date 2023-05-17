@@ -4,12 +4,21 @@
   width: $cellSize;
   height: $cellSize;
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_number {
+    background-color: gray;
+  }
+
+  &_cell {
+    &:hover {
+      background-color: bisque;
+    }
+  }
 
   &_selected {
     background-color: darkgoldenrod;
-  }
-
-  &:hover {
-    background-color: bisque;
   }
 }
