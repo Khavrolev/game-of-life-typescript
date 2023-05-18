@@ -9,7 +9,7 @@ import { getKeyFromRowAndCol, getRowAndColFormKey } from "./utils";
 function geNeighborCells(
   key: string,
   boardSize: BoardSize,
-  hasKeyIncluded = true
+  isCellIncluded = true
 ) {
   const coordinates = getRowAndColFormKey(key);
 
@@ -19,18 +19,19 @@ function geNeighborCells(
 
   const { row, col } = coordinates;
   const { rows, cols } = boardSize;
+
   const top = FIRST_CELL_NUMBER;
   const right = rows + FIRST_CELL_NUMBER - 1;
   const bottom = cols + FIRST_CELL_NUMBER - 1;
   const left = FIRST_CELL_NUMBER;
 
-  const topRow = row - 1 < top ? bottom : row - 1;
-  const bottomRow = row + 1 > bottom ? top : row + 1;
-  const leftCol = col - 1 < left ? right : col - 1;
-  const rightCol = col + 1 > right ? left : col + 1;
+  const topRow = row === top ? bottom : row - 1;
+  const bottomRow = row === bottom ? top : row + 1;
+  const leftCol = col === left ? right : col - 1;
+  const rightCol = col === right ? left : col + 1;
 
   return [
-    ...(hasKeyIncluded ? [getKeyFromRowAndCol(row, col)] : []),
+    ...(isCellIncluded ? [getKeyFromRowAndCol(row, col)] : []),
     getKeyFromRowAndCol(topRow, leftCol),
     getKeyFromRowAndCol(topRow, col),
     getKeyFromRowAndCol(topRow, rightCol),

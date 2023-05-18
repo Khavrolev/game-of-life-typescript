@@ -1,4 +1,4 @@
-import { isNumberOfBoard } from "../../../utils/utils";
+import { isCellOnBoard } from "../../../utils/utils";
 import styles from "./Cell.module.scss";
 import classNames from "classnames";
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 function Cell({ selected, content, row, col }: Props) {
-  const isCellInGame = !isNumberOfBoard(row, col);
+  const isCellInGame = isCellOnBoard(row, col);
 
   return (
     <div

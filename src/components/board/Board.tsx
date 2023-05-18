@@ -2,7 +2,7 @@ import { MouseEvent } from "react";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import styles from "./Board.module.scss";
 import Cell from "./cell/Cell";
-import { filterRowAndCol, getKeyFromRowAndCol } from "../../utils/utils";
+import { getCellCoordinates, getKeyFromRowAndCol } from "../../utils/utils";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { changeAliveStatus, changeBoardState } from "../../store/boardSlice";
 import {
@@ -41,7 +41,7 @@ function Board() {
       return;
     }
 
-    const coordinates = filterRowAndCol(
+    const coordinates = getCellCoordinates(
       event.target.dataset.row,
       event.target.dataset.col
     );

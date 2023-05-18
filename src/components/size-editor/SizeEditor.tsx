@@ -14,7 +14,7 @@ function SizeEditor() {
   const size = useAppSelector((state) => state.size);
   const { rows, cols } = size;
 
-  const [newBoardSize, setNewBoardSize] = useState<BoardSize>({ rows, cols });
+  const [newBoardSize, setNewBoardSize] = useState<BoardSize>(size);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {

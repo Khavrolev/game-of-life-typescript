@@ -13,10 +13,10 @@ export function getKeyFromRowAndCol(row: number, col: number) {
 export function getRowAndColFormKey(key: string) {
   const arr = key.split(KEY_SEPARATOR);
 
-  return filterRowAndCol(arr[0], arr[1]);
+  return getCellCoordinates(arr[0], arr[1]);
 }
 
-export function filterRowAndCol(rowString?: string, colString?: string) {
+export function getCellCoordinates(rowString?: string, colString?: string) {
   const row = Number(rowString);
   const col = Number(colString);
 
@@ -32,8 +32,8 @@ export function filterRowAndCol(rowString?: string, colString?: string) {
   return { row, col };
 }
 
-export function isNumberOfBoard(row: number, col: number) {
-  return row < FIRST_CELL_NUMBER || col < FIRST_CELL_NUMBER;
+export function isCellOnBoard(row: number, col: number) {
+  return row >= FIRST_CELL_NUMBER && col >= FIRST_CELL_NUMBER;
 }
 
 export function isBoardSideOutOfLimits(value: number) {
