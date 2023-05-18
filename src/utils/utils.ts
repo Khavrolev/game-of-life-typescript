@@ -10,7 +10,7 @@ export function getKeyFromRowAndCol(row: number, col: number) {
   return `${row}${KEY_SEPARATOR}${col}`;
 }
 
-export function getRowAndColFormKey(key: string) {
+export function getRowAndColFromKey(key: string) {
   const arr = key.split(KEY_SEPARATOR);
 
   return getCellCoordinates(arr[0], arr[1]);

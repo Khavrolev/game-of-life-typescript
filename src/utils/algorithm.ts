@@ -4,14 +4,14 @@ import {
   neighborsForDeadToBeAlive,
 } from "../constants/constants";
 import { BoardSize } from "../types/types";
-import { getKeyFromRowAndCol, getRowAndColFormKey } from "./utils";
+import { getKeyFromRowAndCol, getRowAndColFromKey } from "./utils";
 
 function geNeighborCells(
   key: string,
   boardSize: BoardSize,
   isCellIncluded = true
 ) {
-  const coordinates = getRowAndColFormKey(key);
+  const coordinates = getRowAndColFromKey(key);
 
   if (!coordinates) {
     return [];
