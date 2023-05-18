@@ -10,4 +10,4 @@ yarn
 yarn dev
 ```
 
-You can use [GitHub Pages](https://Khavrolev.github.io/game-of-life-typescript).
+Open the App [locally](http://localhost:5173/) or you can use [GitHub Pages](https://Khavrolev.github.io/game-of-life-typescript).
