@@ -3,13 +3,13 @@ import styles from "./Cell.module.scss";
 import classNames from "classnames";
 
 interface Props {
-  selected: boolean;
   content: string;
   row: number;
   col: number;
+  isSelected: boolean;
 }
 
-function Cell({ selected, content, row, col }: Props) {
+function Cell({ content, row, col, isSelected }: Props) {
   const isCellInGame = isCellOnBoard(row, col);
 
   return (
@@ -17,7 +17,7 @@ function Cell({ selected, content, row, col }: Props) {
       className={classNames(styles.cell, {
         [styles.cell_number]: !isCellInGame,
         [styles.cell_cell]: isCellInGame,
-        [styles.cell_selected]: selected,
+        [styles.cell_selected]: isSelected,
       })}
       data-row={row}
       data-col={col}

@@ -66,10 +66,10 @@ function Board() {
         board.push(
           <Cell
             key={key}
-            selected={state[key]}
             content={getCellContent(i, j)}
             row={i}
             col={j}
+            isSelected={state[key]}
           />
         );
       }
